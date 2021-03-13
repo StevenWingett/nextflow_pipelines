@@ -5,7 +5,7 @@ process MULTIQC {
 	label 'quadCore'
 
 	// dynamic directive
-	memory { 20.GB * task.attempt }  
+	memory { 2.GB * task.attempt }  
 	errorStrategy { sleep(Math.pow(2, task.attempt) * 30 as long); return 'retry' }
 	maxRetries 3
 
@@ -29,7 +29,7 @@ process MULTIQC {
 		}
 
 		"""
-		module load multiqc
+		#module load multiqc
 		multiqc $multiqc_args -x work .
 		"""
 

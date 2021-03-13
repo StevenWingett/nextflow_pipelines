@@ -10,7 +10,7 @@ process FASTQ_SCREEN {
 	
 	label 'multiCore'
 	
-	memory { 30.GB * task.attempt }  
+	memory { 2.GB * task.attempt }  
 	errorStrategy { sleep(Math.pow(2, task.attempt) * 30 as long); return 'retry' }
   	maxRetries 3
   	
@@ -45,7 +45,7 @@ process FASTQ_SCREEN {
 		}	
 
 	"""
-	module load fastq_screen
+	#module load fastq_screen
 	fastq_screen $params.bisulfite $fastq_screen_args $reads
 	"""
 

@@ -61,7 +61,9 @@ workflow.onComplete {
         """
     .stripIndent()
 
-    sendMail(to: "${workflow.userName}@babraham.ac.uk", subject: 'Minimal pipeline execution report', body: msg)
+//    sendMail(to: "${workflow.userName}@babraham.ac.uk", subject: 'Minimal pipeline execution report', body: msg)
+    sendMail(to: "steven.wingett@gmail.com", subject: 'Minimal pipeline execution report', body: msg)
+
 }
 
 def helpMessage() {
