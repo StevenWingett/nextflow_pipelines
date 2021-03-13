@@ -16,7 +16,7 @@ process TRIM_GALORE {
 	label 'quadCore'                    // sets cpus = 4
 	
 	// dynamic directive
-	memory { 10.GB * task.attempt }  
+	memory { 2.GB * task.attempt }  
 	errorStrategy { sleep(Math.pow(2, task.attempt) * 30 as long); return 'retry' }
 	maxRetries 2
     
@@ -74,8 +74,8 @@ process TRIM_GALORE {
 		}
 
 		"""
-		module load trim_galore
-		module load fastqc
+		#module load trim_galore
+		#module load fastqc
 		trim_galore $trim_galore_args ${pairedString} ${reads}
 		"""
 
