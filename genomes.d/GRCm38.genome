@@ -1,0 +1,7 @@
+name	GRCm38
+species	Mus musculus
+fasta	/data/wingett/Nextflow_iGenomes/references/Mus_musculus/NCBI/GRCm38/Sequence/Chromosomes/
+bowtie2	/data/wingett/Nextflow_iGenomes/references/Mus_musculus/NCBI/GRCm38/Sequence/Bowtie2Index/Mus_musculus_GRCm38
+hisat2  /data/wingett/Nextflow_iGenomes/references/Mus_musculus/NCBI/GRCm38/Sequence/HISAT2Index/Mus_musculus_GRCm38  
+gtf /data/wingett/Nextflow_iGenomes/references/Mus_musculus/NCBI/GRCm38/Annotation/Genes/Mus_musculus.GRCm38.102.chr.gtf
+hisat2_splices  /data/wingett/Nextflow_iGenomes/references/Mus_musculus/NCBI/GRCm38/Annotation/Genes/Mus_musculus.GRCm38.102.chr.ss
