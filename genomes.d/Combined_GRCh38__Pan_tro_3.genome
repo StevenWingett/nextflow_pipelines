@@ -1,0 +1,6 @@
+name	Combined_GRCh38__Pan_tro_3
+species	Homo sapiens and Pan troglodytes
+fasta   /data/wingett/Nextflow_iGenomes/references/Combined_Homo_sapiens_Pan_troglodytes/FASTA/	
+gtf /data/wingett/Nextflow_iGenomes/references/Combined_Homo_sapiens_Pan_troglodytes/GTF/Combined__GRCh38.102__Pan_tro_3.0.103.gtf
+hisat2_splices  /data/wingett/Nextflow_iGenomes/references/Combined_Homo_sapiens_Pan_troglodytes/GTF/Combined__GRCh38.102__Pan_tro_3.0.103.ss
+hisat2  /data/wingett/Nextflow_iGenomes/references/Combined_Homo_sapiens_Pan_troglodytes/HISAT2_indices/Combined_GRCh38_Pan_tro_3.0
