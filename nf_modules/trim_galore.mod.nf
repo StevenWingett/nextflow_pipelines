@@ -13,7 +13,7 @@ process TRIM_GALORE {
     
 	tag "$name"                         // Adds name to job submission instead of (1), (2) etc.
 
-	label 'quadCore'                    // sets cpus = 4
+	//label 'quadCore'                    // sets cpus = 4, now set to 1 core
 	
 	// dynamic directive
 	memory { 2.GB * task.attempt }  

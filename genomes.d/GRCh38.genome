@@ -2,3 +2,6 @@ name	GRCh38
 species	Homo sapiens
 fasta	/data/wingett/Nextflow_iGenomes/references/Homo_sapiens/NCBI/GRCh38/Sequence/Chromosomes/
 bowtie2	/data/wingett/Nextflow_iGenomes/references/Homo_sapiens/NCBI/GRCh38/Sequence/Chromosomes/Bowtie2Index/
+gtf /data/wingett/Nextflow_iGenomes/references/Homo_sapiens/NCBI/GRCh38/Annotation/Genes/Homo_sapiens.GRCh38.102.chr.gtf
+hisat2_splices	/data/wingett/Nextflow_iGenomes/references/Homo_sapiens/NCBI/GRCh38/Annotation/Genes/Homo_sapiens.GRCh38.102.chr.ss
+hisat2  /data/wingett/Nextflow_iGenomes/references/Homo_sapiens/NCBI/GRCh38/Sequence/Chromosomes/HISAT2Index/Homo_sapiens_GRCh38

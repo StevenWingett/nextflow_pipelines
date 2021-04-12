@@ -4,7 +4,8 @@ process HISAT2 {
 	
 	tag "$name" // Adds name to job submission instead of (1), (2) etc.
 
-	label 'bigMem'
+	label 'hugeMem'
+//	label 'bigMem'
 	label 'multiCore'
 
     input:
