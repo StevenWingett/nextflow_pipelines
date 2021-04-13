@@ -1,8 +1,9 @@
 name	GRCm38
 species	Mus musculus
-fasta	/data/wingett/Nextflow_iGenomes/references/Mus_musculus/NCBI/GRCm38/Sequence/Chromosomes/
-bowtie2	/data/wingett/Nextflow_iGenomes/references/Mus_musculus/NCBI/GRCm38/Sequence/Bowtie2Index/Mus_musculus_GRCm38
-hisat2  /data/wingett/Nextflow_iGenomes/references/Mus_musculus/NCBI/GRCm38/Sequence/HISAT2Index/Mus_musculus_GRCm38  
-gtf /data/wingett/Nextflow_iGenomes/references/Mus_musculus/NCBI/GRCm38/Annotation/Genes/Mus_musculus.GRCm38.100.chr.gtf
-hisat2_splices  /data/wingett/Nextflow_iGenomes/references/Mus_musculus/NCBI/GRCm38/Annotation/Genes/Mus_musculus.GRCm38.100
-.chr.ss
+fasta	/data/wingett/Genome_References/Ensembl/Mus_musculus/GRCm38/FASTA/chromosomes/
+bowtie2	/data/wingett/Genome_References/Ensembl/Mus_musculus/GRCm38/Bowtie2/Mus_musculus.GRCh38.dna.chromosome
+gtf	/data/wingett/Genome_References/Ensembl/Mus_musculus/GRCm38/GTF/Mus_musculus.GRCm38.100.chr.gtf
+hisat2_splices	/data/wingett/Genome_References/Ensembl/Mus_musculus/GRCm38/GTF/Mus_musculus.GRCm38.100.chr.ss
+hisat2	/data/wingett/Genome_References/Ensembl/Mus_musculus/GRCm38/HISAT2/Mus_musculus.GRCh38.dna.chromosome
+
+

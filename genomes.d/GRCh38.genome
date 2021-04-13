@@ -1,7 +1,7 @@
 name	GRCh38
 species	Homo sapiens
-fasta	/data/wingett/Nextflow_iGenomes/references/Homo_sapiens/NCBI/GRCh38/Sequence/Chromosomes/
-bowtie2	/data/wingett/Nextflow_iGenomes/references/Homo_sapiens/NCBI/GRCh38/Sequence/Chromosomes/Bowtie2Index/
-gtf /data/wingett/Nextflow_iGenomes/references/Homo_sapiens/NCBI/GRCh38/Annotation/Genes/Homo_sapiens.GRCh38.102.chr.gtf
-hisat2_splices	/data/wingett/Nextflow_iGenomes/references/Homo_sapiens/NCBI/GRCh38/Annotation/Genes/Homo_sapiens.GRCh38.102.chr.ss
-hisat2  /data/wingett/Nextflow_iGenomes/references/Homo_sapiens/NCBI/GRCh38/Sequence/Chromosomes/HISAT2Index/Homo_sapiens_GRCh38
+fasta	/data/wingett/Genome_References/Ensembl/Homo_sapiens/GRCh38/FASTA/chromosomes/
+bowtie2	/data/wingett/Genome_References/Ensembl/Homo_sapiens/GRCh38/Bowtie2/Homo_sapiens.GRCh38.dna.chromosome
+gtf	/data/wingett/Genome_References/Ensembl/Homo_sapiens/GRCh38/GTF/Homo_sapiens.GRCh38.102.chr.gtf
+hisat2_splices	/data/wingett/Genome_References/Ensembl/Homo_sapiens/GRCh38/GTF/Homo_sapiens.GRCh38.102.chr.ss
+hisat2	/data/wingett/Genome_References/Ensembl/Homo_sapiens/GRCh38/HISAT2/Homo_sapiens.GRCh38.dna.chromosome
