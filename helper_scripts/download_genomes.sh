@@ -39,23 +39,23 @@ cd GRCh38
 ################
 mkdir FASTA
 cd FASTA/
-mkdir chromosomes
-cd chromosomes
-lftp -e "mget Homo_sapiens.GRCh38.dna.chromosome.*.fa.gz; bye" http://ftp.ensembl.org/pub/release-102/fasta/homo_sapiens/dna/
+mkdir primary_assembly
+cd primary_assembly
+lftp -e "mget Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz; bye" http://ftp.ensembl.org/pub/release-102/fasta/homo_sapiens/dna/
 gunzip *.gz
 
 # Bowtie2
 ################
 genome=$(ls -m *.fa)
 genome=$(echo $genome | sed 's/ //g')
-bowtie2-build $genome Homo_sapiens.GRCh38.dna.chromosome > bowtie2-build.out
+bowtie2-build $genome Homo_sapiens.GRCh38.dna.primary_assembly > bowtie2-build.out
 mkdir ../../Bowtie2
 mv *.bt2  ../../Bowtie2/
 mv bowtie2-build.out  ../../Bowtie2/
 
 # HISAT2
 ################
-hisat2-build $genome Homo_sapiens.GRCh38.dna.chromosome > hisat2-build.out
+hisat2-build $genome Homo_sapiens.GRCh38.dna.primary_assembly > hisat2-build.out
 mkdir ../../HISAT2
 mv *.ht2  ../../HISAT2/
 mv hisat2-build.out  ../../HISAT2/
@@ -65,7 +65,7 @@ cd ../..
 #################
 mkdir GTF
 cd GTF/
-wget -nv http://ftp.ensembl.org/pub/release-102/gtf/homo_sapiens/Homo_sapiens.GRCh38.102.chr.gtf.gz
+wget -nv http://ftp.ensembl.org/pub/release-102/gtf/homo_sapiens/Homo_sapiens.GRCh38.102.gtf.gz
 gunzip *.gz
 gtf=$(ls *.gtf)
 splice_sites=$(echo $gtf | sed 's/\.gtf$/.ss/g')
@@ -78,13 +78,13 @@ cd ..
 ###########################
 echo -e "name\tGRCh38" > GRCh38.genome
 echo -e "species\tHomo sapiens" >> GRCh38.genome
-echo -e "fasta\t$PWD/FASTA/chromosomes/" >> GRCh38.genome
-echo -e "bowtie2\t$PWD/Bowtie2/Homo_sapiens.GRCh38.dna.chromosome" >> GRCh38.genome
-echo -e "gtf\t$PWD/GTF/Homo_sapiens.GRCh38.102.chr.gtf" >> GRCh38.genome
-echo -e "hisat2_splices\t$PWD/GTF/Homo_sapiens.GRCh38.102.chr.ss" >> GRCh38.genome
-echo -e "hisat2\t$PWD/HISAT2/Homo_sapiens.GRCh38.dna.chromosome" >> GRCh38.genome
+echo -e "fasta\t$PWD/FASTA/primary_assembly/" >> GRCh38.genome
+echo -e "bowtie2\t$PWD/Bowtie2/Homo_sapiens.GRCh38.dna.primary_assembly" >> GRCh38.genome
+echo -e "gtf\t$PWD/GTF/Homo_sapiens.GRCh38.102.gtf" >> GRCh38.genome
+echo -e "hisat2_splices\t$PWD/GTF/Homo_sapiens.GRCh38.102.ss" >> GRCh38.genome
+echo -e "hisat2\t$PWD/HISAT2/Homo_sapiens.GRCh38.dna.primary_assembly" >> GRCh38.genome
 echo -e "\n" >> GRCh38.genome
-cd ..
+cd ../..
 
 
 ####################
@@ -105,24 +105,24 @@ cd GRCm38
 ################
 mkdir FASTA
 cd FASTA/
-mkdir chromosomes
-cd chromosomes
+mkdir primary_assembly
+cd primary_assembly
 
-lftp -e "mget Mus_musculus.GRCm38.dna.chromosome.*.fa.gz; bye" http://ftp.ensembl.org/pub/release-100/fasta/mus_musculus/dna/
+lftp -e "mget Mus_musculus.GRCm38.dna.primary_assembly.fa.gz; bye" http://ftp.ensembl.org/pub/release-100/fasta/mus_musculus/dna/
 gunzip *.gz
 
 # Bowtie2
 ################
 genome=$(ls -m *.fa)
 genome=$(echo $genome | sed 's/ //g')
-bowtie2-build $genome Mus_musculus.GRCm38.dna.chromosome > bowtie2-build.out
+bowtie2-build $genome Mus_musculus.GRCm38.dna.primary_assembly > bowtie2-build.out
 mkdir ../../Bowtie2
 mv *.bt2  ../../Bowtie2/
 mv bowtie2-build.out  ../../Bowtie2/
 
 # HISAT2
 ################
-hisat2-build $genome Mus_musculus.GRCm38.dna.chromosome > hisat2-build.out
+hisat2-build $genome Mus_musculus.GRCm38.dna.primary_assembly > hisat2-build.out
 mkdir ../../HISAT2
 mv *.ht2  ../../HISAT2/
 mv hisat2-build.out  ../../HISAT2/
@@ -132,7 +132,7 @@ cd ../..
 #################
 mkdir GTF
 cd GTF/
-wget -nv http://ftp.ensembl.org/pub/release-100/gtf/mus_musculus/Mus_musculus.GRCm38.100.chr.gtf.gz
+wget -nv http://ftp.ensembl.org/pub/release-100/gtf/mus_musculus/Mus_musculus.GRCm38.100.gtf.gz
 gunzip *.gz
 gtf=$(ls *.gtf)
 splice_sites=$(echo $gtf | sed 's/\.gtf$/.ss/g')
@@ -145,11 +145,11 @@ cd ..
 ###########################
 echo -e "name\tGRCm38" > GRCm38.genome
 echo -e "species\tMus musculus" >> GRCm38.genome
-echo -e "fasta\t$PWD/FASTA/chromosomes/" >> GRCm38.genome
-echo -e "bowtie2\t$PWD/Bowtie2/Mus_musculus.GRCh38.dna.chromosome" >> GRCm38.genome
-echo -e "gtf\t$PWD/GTF/Mus_musculus.GRCm38.100.chr.gtf" >> GRCm38.genome
-echo -e "hisat2_splices\t$PWD/GTF/Mus_musculus.GRCm38.100.chr.ss" >> GRCm38.genome
-echo -e "hisat2\t$PWD/HISAT2/Mus_musculus.GRCh38.dna.chromosome" >> GRCm38.genome
+echo -e "fasta\t$PWD/FASTA/primary_assembly/" >> GRCm38.genome
+echo -e "bowtie2\t$PWD/Bowtie2/Mus_musculus.GRCm38.dna.primary_assembly" >> GRCm38.genome
+echo -e "gtf\t$PWD/GTF/Mus_musculus.GRCm38.100.gtf" >> GRCm38.genome
+echo -e "hisat2_splices\t$PWD/GTF/Mus_musculus.GRCm38.100.ss" >> GRCm38.genome
+echo -e "hisat2\t$PWD/HISAT2/Mus_musculus.GRCm38.dna.primary_assembly" >> GRCm38.genome
 echo -e "\n" >> GRCm38.genome
 cd ..
 
