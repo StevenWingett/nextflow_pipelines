@@ -83,7 +83,6 @@ echo -e "bowtie2\t$PWD/Bowtie2/Homo_sapiens.GRCh38.dna.primary_assembly" >> GRCh
 echo -e "gtf\t$PWD/GTF/Homo_sapiens.GRCh38.102.gtf" >> GRCh38.genome
 echo -e "hisat2_splices\t$PWD/GTF/Homo_sapiens.GRCh38.102.ss" >> GRCh38.genome
 echo -e "hisat2\t$PWD/HISAT2/Homo_sapiens.GRCh38.dna.primary_assembly" >> GRCh38.genome
-echo -e "\n" >> GRCh38.genome
 cd ../..
 
 
@@ -150,12 +149,7 @@ echo -e "bowtie2\t$PWD/Bowtie2/Mus_musculus.GRCm38.dna.primary_assembly" >> GRCm
 echo -e "gtf\t$PWD/GTF/Mus_musculus.GRCm38.100.gtf" >> GRCm38.genome
 echo -e "hisat2_splices\t$PWD/GTF/Mus_musculus.GRCm38.100.ss" >> GRCm38.genome
 echo -e "hisat2\t$PWD/HISAT2/Mus_musculus.GRCm38.dna.primary_assembly" >> GRCm38.genome
-echo -e "\n" >> GRCm38.genome
 cd ..
-
-
-
-
 
 
 echo "Done"
