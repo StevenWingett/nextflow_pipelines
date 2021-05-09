@@ -9,6 +9,7 @@ params.outdir = "."
 params.genome = ""
 params.verbose = false
 params.single_end = false  // default mode is auto-detect. NOTE: params are handed over automatically 
+params.enzyme = ""
 
 params.fastqc_args = ''
 params.fastq_screen_args = ''
@@ -63,7 +64,7 @@ workflow {
         FASTQ_SCREEN    (file_ch, params.outdir, params.fastq_screen_args, params.verbose)
         TRIM_GALORE     (file_ch, params.outdir, params.trim_galore_args, params.verbose)
         FASTQC2         (TRIM_GALORE.out.reads, params.outdir, params.fastqc_args, params.verbose)
-        HICUP           (TRIM_GALORE.out.reads, params.outdir, params.hicup_args, params.verbose)
+        HICUP           (TRIM_GALORE.out.reads, params.outdir, params.hicup_args, params.verbose, params.enzyme)
      
         // merging channels for MultiQC
         multiqc_ch = FASTQC.out.report.mix(
