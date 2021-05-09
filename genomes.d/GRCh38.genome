@@ -1,7 +1,8 @@
 name	GRCh38
 species	Homo sapiens
-fasta	/data/wingett/Genome_References/Ensembl/Homo_sapiens/GRCh38/FASTA/chromosomes/
-bowtie2	/data/wingett/Genome_References/Ensembl/Homo_sapiens/GRCh38/Bowtie2/Homo_sapiens.GRCh38.dna.chromosome
-gtf	/data/wingett/Genome_References/Ensembl/Homo_sapiens/GRCh38/GTF/Homo_sapiens.GRCh38.102.chr.gtf
-hisat2_splices	/data/wingett/Genome_References/Ensembl/Homo_sapiens/GRCh38/GTF/Homo_sapiens.GRCh38.102.chr.ss
-hisat2	/data/wingett/Genome_References/Ensembl/Homo_sapiens/GRCh38/HISAT2/Homo_sapiens.GRCh38.dna.chromosome
+fasta	/data1/Genome_References/Ensembl/Homo_sapiens/GRCh38/FASTA/primary_assembly/
+bowtie2	/data1/Genome_References/Ensembl/Homo_sapiens/GRCh38/Bowtie2/Homo_sapiens.GRCh38.dna.primary_assembly
+gtf	/data1/Genome_References/Ensembl/Homo_sapiens/GRCh38/GTF/Homo_sapiens.GRCh38.102.gtf
+hisat2_splices	/data1/Genome_References/Ensembl/Homo_sapiens/GRCh38/GTF/Homo_sapiens.GRCh38.102.ss
+hisat2	/data1/Genome_References/Ensembl/Homo_sapiens/GRCh38/HISAT2/Homo_sapiens.GRCh38.dna.primary_assembly
+hicup_digest /data1/Genome_References/Ensembl/Homo_sapiens/GRCh38/HiCUP_Digest

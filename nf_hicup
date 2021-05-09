@@ -5,6 +5,7 @@ nextflow.enable.dsl=2
 
 params.outdir = "."
 params.genome = ""
+params.enzyme = ""
 //params.bowtie2_args = ''
 params.hicup_args = ''
 params.verbose = false
@@ -48,7 +49,7 @@ workflow {
 
     main:
         // BOWTIE2(file_ch, params.outdir, params.bowtie2_args, params.verbose)
-        HICUP(file_ch, params.outdir, params.hicup_args, params.verbose)
+        HICUP(file_ch, params.outdir, params.hicup_args, params.verbose, params.enzyme)
     
 }
 
@@ -67,8 +68,8 @@ workflow.onComplete {
         """
     .stripIndent()
 
-//    sendMail(to: "${workflow.userName}@babraham.ac.uk", subject: 'Minimal pipeline execution report', body: msg)
-    sendMail(to: "steven.wingett@mrc-lmb.cam.ac.ac.uk", subject: 'Minimal pipeline execution report', body: msg)
+    sendMail(to: "${workflow.userName}@babraham.ac.uk", subject: 'Minimal pipeline execution report', body: msg)
+    //sendMail(to: "steven.wingett@mrc-lmb.cam.ac.ac.uk", subject: 'Minimal pipeline execution report', body: msg)
 }
 
 def helpMessage() {

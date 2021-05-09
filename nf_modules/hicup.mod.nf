@@ -13,6 +13,7 @@ process HICUP {
 		//val (bowtie2_args)
 		val (hicup_args)
 		val (verbose)
+		val (enzyme)
 
 	output:
 	    path "*.bam",  emit: bam
@@ -51,15 +52,47 @@ process HICUP {
 		//}
 
 		readString = reads[0] + ' ' + reads[1]
+		println('READSTRING ' + readString)
 
 		index = params.genome["bowtie2"]
 		//bowtie_name = name + "_" + params.genome["name"]
 		hicup_name = name + "_" + params.genome["name"]
+
+		//Check digest
+		hicup_digest_folder = params.genome["hicup_digest"]
+		myDir = file(hicup_digest_folder)
+		println hicup_digest_folder
+		println enzyme
+		allFiles = myDir.list()
+		hicup_digest_file = ''
+           
+		enzyme_match_counter = 0     
+		for( def file : allFiles ) {
+			println file
+			digest_file_enzyme = file.split('_');
+			digest_file_enzyme = digest_file_enzyme[2]
+
+			if(digest_file_enzyme == enzyme){
+				enzyme_match_counter = enzyme_match_counter + 1
+				hicup_digest_file = hicup_digest_folder + "/" + file
+			}
+		}
+
+		if(enzyme_match_counter != 1){
+			println("Matching restriction enzymes not exactly equal to 1")
+			System.exit(1)
+		}
+
+
+
+
 		"""
-		#module load bowtie2
-		#module load samtools
+		#  mls
 		
-		hicup --bowtie2 bowtie2 --format sanger --index $index --threads $cores --longest 700 --shortest 50 --zip ${hicup_options} $readString
+		#module load bowtie2
+		#  module load samtools
+		
+		hicup --bowtie2 bowtie2 --format sanger --index $index --threads $cores --longest 700 --shortest 50 --zip --digest $hicup_digest_file ${hicup_options} $readString
 
 		"""
 
