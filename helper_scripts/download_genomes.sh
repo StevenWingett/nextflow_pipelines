@@ -44,6 +44,17 @@ cd primary_assembly
 lftp -e "mget Homo_sapiens.GRCh38.dna.primary_assembly.fa.gz; bye" http://ftp.ensembl.org/pub/release-102/fasta/homo_sapiens/dna/
 gunzip *.gz
 
+# HiCUP
+################
+hicup_digester --re1 A^AGCTT,HindIII --genome GRCh38 --zip *.fa
+hicup_digester --re1 ^GATC,DpnII --genome GRCh38 --zip *.fa
+hicup_digester --re1 ^GATC,MboI --genome GRCh38 --zip *.fa
+hicup_digester --re1 G^AATTC,EcoRI --genome GRCh38 --zip *.fa
+hicup_digester --re1 A^GATCT,BglII --genome GRCh38 --zip *.fa
+hicup_digester --re1 C^CATGG,NcoI --genome GRCh38 --zip *.fa
+mkdir ../../HiCUP_Digest
+mv Digest_* ../../HiCUP_Digest
+
 # Bowtie2
 ################
 genome=$(ls -m *.fa)
@@ -57,8 +68,8 @@ mv bowtie2-build.out  ../../Bowtie2/
 ################
 hisat2-build $genome Homo_sapiens.GRCh38.dna.primary_assembly > hisat2-build.out
 mkdir ../../HISAT2
-mv *.ht2  ../../HISAT2/
-mv hisat2-build.out  ../../HISAT2/
+mv *.ht2 ../../HISAT2/
+mv hisat2-build.out ../../HISAT2/
 cd ../..
 
 # GTF
@@ -83,6 +94,7 @@ echo -e "bowtie2\t$PWD/Bowtie2/Homo_sapiens.GRCh38.dna.primary_assembly" >> GRCh
 echo -e "gtf\t$PWD/GTF/Homo_sapiens.GRCh38.102.gtf" >> GRCh38.genome
 echo -e "hisat2_splices\t$PWD/GTF/Homo_sapiens.GRCh38.102.ss" >> GRCh38.genome
 echo -e "hisat2\t$PWD/HISAT2/Homo_sapiens.GRCh38.dna.primary_assembly" >> GRCh38.genome
+echo -e "hicup_digest\t$PWD/HiCUP_Digest" >> GRCh38.genome
 cd ../..
 
 
@@ -106,9 +118,19 @@ mkdir FASTA
 cd FASTA/
 mkdir primary_assembly
 cd primary_assembly
-
 lftp -e "mget Mus_musculus.GRCm38.dna.primary_assembly.fa.gz; bye" http://ftp.ensembl.org/pub/release-100/fasta/mus_musculus/dna/
 gunzip *.gz
+
+# HiCUP
+################
+hicup_digester --re1 A^AGCTT,HindIII --genome GRCm38 --zip *.fa
+hicup_digester --re1 ^GATC,DpnII --genome GRCm38 --zip *.fa
+hicup_digester --re1 ^GATC,MboI --genome GRCm38 --zip *.fa
+hicup_digester --re1 G^AATTC,EcoRI --genome GRCm38 --zip *.fa
+hicup_digester --re1 A^GATCT,BglII --genome GRCm38 --zip *.fa
+hicup_digester --re1 C^CATGG,NcoI --genome GRCm38 --zip *.fa
+mkdir ../../HiCUP_Digest
+mv Digest_* ../../HiCUP_Digest
 
 # Bowtie2
 ################
@@ -149,6 +171,7 @@ echo -e "bowtie2\t$PWD/Bowtie2/Mus_musculus.GRCm38.dna.primary_assembly" >> GRCm
 echo -e "gtf\t$PWD/GTF/Mus_musculus.GRCm38.100.gtf" >> GRCm38.genome
 echo -e "hisat2_splices\t$PWD/GTF/Mus_musculus.GRCm38.100.ss" >> GRCm38.genome
 echo -e "hisat2\t$PWD/HISAT2/Mus_musculus.GRCm38.dna.primary_assembly" >> GRCm38.genome
+echo -e "hicup_digest\t$PWD/HiCUP_Digest" >> GRCm38.genome
 cd ..
 
 
