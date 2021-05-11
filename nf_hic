@@ -107,9 +107,10 @@ def helpMessage() {
     SYNOPSIS:
 
     In a nutshell, this workflow runs an entire processing pipeline on FastQ files, including QC, contamination QC,
-    quality-/adapter trimming, alignments to a genome using Bowtie 2, and finally generate an aggregate QC report. The
-    workflow is suitable for e.g. ChIP-seq, ATAC-seq or any other form of sequencing that requires standard alignments
-    to a genome. Here is a graphical representation of the workflow:
+    quality-/adapter trimming, mapping and filtering with HiCUP, and finally generate an aggregate QC report. The
+    workflow is suitable for Hi-C experiments.
+    
+    Here is a graphical representation of the workflow:
 
     --- FastQC
     --- FastQ Screen
@@ -119,16 +120,14 @@ def helpMessage() {
         --- HiCUP  
     --- MultiQC*
         
-    * This step runs only once ALL other jobs have completed.
+    * This step runs only once after ALL other jobs have completed.
      
-    By default all these steps are submitted as jobs to the Babraham stone compute cluster.
-
     By default, the involved tools are run in the following way:
     ------------------------------------------------------------
     FastQC:         defaults (-q)
     FastQ Screen:   defaults (Bowtie 2; local mode)
     Trim Galore:    defaults (adapter auto-detection)
-    Bowtie 2:       end-to-end mode; '--no-unal'; for paired-end files: '--no-mixed --no-discordant' (concordant PE alignmnents only)
+    HiCUP:          default
                     
     To add additional parameters to any of the programs, consider supplying tool-specific arguments (see --toolname_args="..." below).
 
@@ -138,20 +137,17 @@ def helpMessage() {
             
     USAGE:
     
-    nf_chipseq [options] --genome <genomeID> <input files>
+    nf_hic [options]  --genome <genomeID> --digest <digestID> <input files>
     
     Mandatory arguments:
     ====================
 
-      <input files>                   List of input files, e.g. '*fastq.gz' or '*fq.gz'. Files are automatically processed as
-                                      single-end (SE) or paired end (PE) files (if file pairs share the same base-name, and differ only
-                                      by a read number, e.g. 'base_name_R1.fastq.gz' and 'base_name_R2.fastq.gz' (or R3, R4). For
-                                      PE files, only Read 1 is run through FastQ Screen (as typically R1 and R2 produce nearly identical
-                                      contamination profiles). To run PE files in single-end mode, please see '--single_end' below.
+      <input files>                   List of input files, e.g. '*fastq.gz' or '*fq.gz'. List of input files, e.g. '*fastq.gz' or '*fq.gz'. These will be from a paired-end run.
 
       --genome [str]                  Genome build ID to be used for the alignment, e.g. GRCh38 (latest human genome) or GRCm38
                                       (latest mouse genome build). To list all available genomes, see '--list_genomes' below.
 
+     --digest [str]                  Restriction enzyme used to create Hi-C junctions.
 
     Tool-specific options:
     ======================
@@ -177,11 +173,9 @@ def helpMessage() {
                                       ' --trim_galore_args="--clip_r1 10 --clip_r2 5" '. [Default: None]
 
     
-      --hicup_args="[str]"          This option can take any number of options that are compatible with Bowtie 2 to modify its
+      --hicup_args="[str]"            This option can take any number of options that are compatible with HiCUP to modify its
                                       default mapping behaviour. For more detailed information on available options please refer
-                                      to the Bowtie 2 User Guide, or run 'bowtie2 --help' on the command line. As an example, to
-                                      run somewhat more stringent alignments for only 1 million sequences, use:
-                                      ' --bowtie2_args="-u 1000000 --score_min L,0,-0.4" '. [Default: None]
+                                      to the HiCUP User Guide, or run 'hicup --help' on the command line. [Default: None]
 
     Other options:
     ==============
@@ -191,10 +185,9 @@ def helpMessage() {
       --list_genomes                  List all genome builds that are currently available to choose from. To see this list
                                       of available genomes with more detailed information about paths and indexes, run
                                       the command as '--list_genomes --verbose'
-    
-      --single_end                    Force files of a read pair to be treated as single-end files. [Default: auto-detect]
       
       --verbose                       More verbose status messages. [Default: OFF]
+
       --help                          Displays this help message and exits.
 
     Workflow options:
@@ -211,10 +204,6 @@ def helpMessage() {
                                       your workflow, and submits new jobs to the SLURM queue as required. Use this option for big pipeline
                                       jobs, or whenever you do not want to watch the status progress yourself. Upon completion, the
                                       pipeline will send you an email with the job details. This option is HIGHLY RECOMMENDED!
-
-      -process.executor=local         Temporarily changes where the workflow is executed to the 'local' machine. See also Nextflow config
-                                      file for more details. [Default: slurm] 
-    
 
     <<
     """.stripIndent()
