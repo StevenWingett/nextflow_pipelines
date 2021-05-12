@@ -85,6 +85,11 @@ exon=$(echo $gtf | sed 's/\.gtf$/.exon/g')
 hisat2_extract_exons.py $gtf > $exon
 cd ..
 
+# STAR
+#################
+mkdir STAR
+star --runThreadN 8 --runMode genomeGenerate --genomeDir STAR --genomeFastaFiles FASTA/*.fa --sjdbGTFfile GTF/*.gtf
+
 # Make NextFlow genome text
 ###########################
 echo -e "name\tGRCh38" > GRCh38.genome
@@ -161,6 +166,11 @@ hisat2_extract_splice_sites.py $gtf > $splice_sites
 exon=$(echo $gtf | sed 's/\.gtf$/.exon/g')
 hisat2_extract_exons.py $gtf > $exon
 cd ..
+
+# STAR
+#################
+mkdir STAR
+star --runThreadN 8 --runMode genomeGenerate --genomeDir STAR --genomeFastaFiles FASTA/*.fa --sjdbGTFfile GTF/*.gtf
 
 # Make NextFlow genome text
 ###########################
