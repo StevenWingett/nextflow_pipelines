@@ -87,8 +87,9 @@ cd ..
 
 # STAR
 #################
-mkdir STAR
-star --runThreadN 8 --runMode genomeGenerate --genomeDir STAR --genomeFastaFiles FASTA/*.fa --sjdbGTFfile GTF/*.gtf
+mkdir -p STAR/STAR_Index_Folder
+cd STAR
+STAR --runThreadN 8 --runMode genomeGenerate --genomeDir STAR_Index_Folder --genomeFastaFiles ../FASTA/primary_assembly/*.fa --sjdbGTFfile ../GTF/*.gtf
 
 # Make NextFlow genome text
 ###########################
@@ -169,8 +170,9 @@ cd ..
 
 # STAR
 #################
-mkdir STAR
-star --runThreadN 8 --runMode genomeGenerate --genomeDir STAR --genomeFastaFiles FASTA/*.fa --sjdbGTFfile GTF/*.gtf
+mkdir -p STAR/STAR_Index_Folder
+cd STAR
+STAR --runThreadN 8 --runMode genomeGenerate --genomeDir STAR_Index_Folder --genomeFastaFiles ../FASTA/primary_assembly/*.fa --sjdbGTFfile ../GTF/*.gtf
 
 # Make NextFlow genome text
 ###########################
