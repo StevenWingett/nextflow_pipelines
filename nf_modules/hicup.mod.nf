@@ -19,6 +19,9 @@ process HICUP {
 		path "*.txt", emit: stats 
 		path "*.html", emit: reports
 		path "*.svg", emit: plots
+		path "*.homer", emit: homer
+		path "*.prejuicer", emit: prejuicer
+		
 
 	publishDir "$outputdir",
 		mode: "link", overwrite: true
@@ -57,10 +60,13 @@ process HICUP {
 
 		if(enzyme_match_counter != 1){
 			println("Matching restriction enzymes not exactly equal to 1")
+			println("Specify ONE valid hi-c restriction --enzyme")
 			System.exit(1)
 		}
 
 		"""
 		hicup --bowtie2 bowtie2 --format sanger --index $index --threads $cores --longest 700 --shortest 50 --zip --digest $hicup_digest_file ${hicup_options} $readString
+		hicup2homer *.bam
+		hicup2juicer *.bam
 		"""
 }
