@@ -63,8 +63,7 @@ workflow.onComplete {
         """
     .stripIndent()
 
-//    sendMail(to: "${workflow.userName}@babraham.ac.uk", subject: 'Minimal pipeline execution report', body: msg)
-    sendMail(to: "steven.wingett@gmail.com", subject: 'Minimal pipeline execution report', body: msg)
+    sendMail(to: "${workflow.userName}@mrc-lmb.cam.ac.uk", subject: 'Minimal pipeline execution report', body: msg)
 }
 
 def helpMessage() {
@@ -74,7 +73,7 @@ def helpMessage() {
 
     
     This workflow takes in a list of filenames (in FastQ format), and aligns these files to a genome using Bowtie 2 on the
-    stone compute cluster at Babraham.
+    stone compute cluster at mrc-lmb.cam.ac.uk.
 
     If you run Bowtie 2 in this stand-alone workflow it is assumed that you know what you are doing, e.g. raw FastQ files should
     have been trimmed appropriately. If called as is, Bowtie 2 is run in default end-to-end mode (we are adding the options
