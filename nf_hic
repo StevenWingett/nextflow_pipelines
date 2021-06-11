@@ -137,7 +137,7 @@ def helpMessage() {
             
     USAGE:
     
-    nf_hic [options]  --genome <genomeID> --digest <digestID> <input files>
+    nf_hic [options]  --genome <genomeID> --enzyme <enzymeID> <input files>
     
     Mandatory arguments:
     ====================
@@ -147,7 +147,7 @@ def helpMessage() {
       --genome [str]                  Genome build ID to be used for the alignment, e.g. GRCh38 (latest human genome) or GRCm38
                                       (latest mouse genome build). To list all available genomes, see '--list_genomes' below.
 
-     --digest [str]                  Restriction enzyme used to create Hi-C junctions.
+     --enzyme [str]                  Restriction enzyme used to create Hi-C junctions.
 
     Tool-specific options:
     ======================
